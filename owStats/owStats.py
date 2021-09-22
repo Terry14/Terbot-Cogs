@@ -43,3 +43,25 @@ class OWStats(commands.Cog):
                 return await ctx.send(output)
         else:
             return await ctx.send("Please provide a username to search (without the BattleTag ID)")
+
+    # TODO: Program to try multiple regions/platforms and show more stats
+    @commands.command()
+    async def owrank(self, ctx, btag: str = None):
+        """
+        Returns the player's competitive ranking.
+        """
+        if btag:
+            btag = btag.replace("#", "-")
+            response = requests.get("https://ow-api.com/v1/stats/pc/us/" + btag + "/profile")
+            if response.status_code == requests.codes.ok:
+                if response.json()["ratings"] is None:
+                    btag = btag.replace("-", "#")
+                    return await ctx.send(btag + " has not placed any competitive roles this season.")
+                else:
+                    for rank in response.json()["ratings"]:
+                        return await ctx.send(str(rank["role"]) + ": " + str(rank["level"]) + "SR")
+            else:
+                return await ctx.send("User not found. Perhaps they are not on US region PC.")
+        else:
+            return await ctx.send("Please provide a BattleTag to search E.g. Banana-12345")
+        return
