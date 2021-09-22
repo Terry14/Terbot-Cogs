@@ -60,7 +60,7 @@ class OWStats(commands.Cog):
                 else:
                     output = ""
                     for rank in response.json()["ratings"]:
-                        output += str(rank["role"]) + ": " + str(rank["level"]) + "SR\n"
+                        output += str(rank["role"]) + ": " + str(rank["level"]) + " SR\n"
                     return await ctx.send(output)
             else:
                 return await ctx.send("User not found. Perhaps they are not on US region PC.")
