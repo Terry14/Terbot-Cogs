@@ -58,8 +58,10 @@ class OWStats(commands.Cog):
                     btag = btag.replace("-", "#")
                     return await ctx.send(btag + " has not placed any competitive roles this season.")
                 else:
+                    output = ""
                     for rank in response.json()["ratings"]:
-                        return await ctx.send(str(rank["role"]) + ": " + str(rank["level"]) + "SR")
+                        output += str(rank["role"]) + ": " + str(rank["level"]) + "SR\n"
+                    return await ctx.send(output)
             else:
                 return await ctx.send("User not found. Perhaps they are not on US region PC.")
         else:
