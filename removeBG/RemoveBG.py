@@ -52,7 +52,12 @@ class RemoveBG(commands.Cog):
                 headers={'X-Api-Key': api_key},
             )
             if response.status_code == requests.codes.ok:
-                await ctx.send(file=response.content)
+                with open('no-bg.png', 'wb') as out:
+                    out.write(response.content)
+                with open('no-bg.png', 'rb') as out:
+                    f = discord.File(out, filename='no-bg.png')    
+                await ctx.send(file=f)
+                os.remove('no-bg.png')
             else:
                 await ctx.send("Error: " + response.status_code + response.text)
 
@@ -72,7 +77,12 @@ class RemoveBG(commands.Cog):
                 headers={'X-Api-Key': api_key},
             )
             if response.status_code == requests.codes.ok:
-                await ctx.send(file=response.content)
+                with open('no-bg.png', 'wb') as out:
+                    out.write(response.content)
+                with open('no-bg.png', 'rb') as out:
+                    f = discord.File(out, filename='no-bg.png')    
+                await ctx.send(file=f)
+                os.remove('no-bg.png')
             else:
                 await ctx.send("Error: " + response.status_code + response.text)
                 await ctx.send("Sorry, looks like my Free API has run out of uses for this month.")
