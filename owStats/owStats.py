@@ -26,7 +26,7 @@ class OWStats(commands.Cog):
         if uname:
             async with ctx.typing():
                 
-                driver = webdriver.Firefox(log_path=data_manager.cog_data_path(self))
+                driver = webdriver.Firefox(log_path=data_manager.cog_data_path(self) + "/geckodriver.log")
                 driver.get("https://playoverwatch.com/en-us/search/?q=" + uname)
                 names = re.findall(">(" + uname + "#[0-9]+)<", driver.page_source, flags=re.IGNORECASE)
                 levels = re.findall("level-value\">([0-9]+)<", driver.page_source, flags=re.IGNORECASE)
