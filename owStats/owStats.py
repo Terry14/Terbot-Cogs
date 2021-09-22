@@ -51,14 +51,15 @@ class OWStats(commands.Cog):
         Returns the player's competitive ranking.
         """
         if btag:
-            btag = btag.replace("#", "-")
-            response = requests.get("https://ow-api.com/v1/stats/pc/us/" + btag + "/profile")
+            btagDash = btag.replace("#", "-")
+            response = requests.get("https://ow-api.com/v1/stats/pc/us/" + btagDash + "/profile")
             if response.status_code == requests.codes.ok:
+                if response.json()["private"] == True:
+                    return await ctx.send(btag + "'s profile is private :'(.")
                 if response.json()["ratings"] is None:
-                    btag = btag.replace("-", "#")
                     return await ctx.send(btag + " has not placed any competitive roles this season.")
                 else:
-                    output = ""
+                    output = btag + "'s Competitive Rankings:\n"
                     for rank in response.json()["ratings"]:
                         output += str(rank["role"]) + ": " + str(rank["level"]) + " SR\n"
                     return await ctx.send(output)
