@@ -18,6 +18,7 @@ class OWStats(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.cooldown(rate=1, per=10, type=discord.ext.commands.cooldowns.BucketType.guild)
     async def owsearch(self, ctx, uname: str = None):
         """
         Searches for players matching the given username.
