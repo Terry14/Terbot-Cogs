@@ -34,7 +34,8 @@ class RemoveBG(commands.Cog):
             await ctx.send("Please supply just one image at a time.")
             return
         """
-
+        api_key = removebg_key.get("api_key")
+        
         for attach in attachments:
             url = attach.url
             filename = "".join(url.split("/")[-1:]).replace("%20", "_")
@@ -48,7 +49,7 @@ class RemoveBG(commands.Cog):
                     'image_url': url,
                     'size': 'auto'
                 },
-                headers={'X-Api-Key': removebg_key},
+                headers={'X-Api-Key': api_key},
             )
             if response.status_code == requests.codes.ok:
                 await ctx.send(response.content)
@@ -68,7 +69,7 @@ class RemoveBG(commands.Cog):
                     'image_url': url,
                     'size': 'auto'
                 },
-                headers={'X-Api-Key': removebg_key},
+                headers={'X-Api-Key': api_key},
             )
             if response.status_code == requests.codes.ok:
                 await ctx.send(response.content)
