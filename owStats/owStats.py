@@ -31,10 +31,10 @@ class OWStats(commands.Cog):
                 driver.get("https://playoverwatch.com/en-us/search/?q=" + uname)
                 names = re.findall(">(" + uname + "#[0-9]+)<", driver.page_source, flags=re.IGNORECASE)
                 levels = re.findall("level-value\">([0-9]+)<", driver.page_source, flags=re.IGNORECASE)
-                private = re.findall("lity-private=\"(.+)\"", driver.page_source)
+                private = re.findall("lity-private=\"([falsetru]+)\"", driver.page_source)
                 output = "BattleTag\t\tLevel\tPublic\n"
                 for n, l, p in zip(names, levels, private):
-                    output += n + "\t\t" + l + ("\t:white_check_mark:" if p == "false" else "\t") + "\n"
+                    output += n + "\t\t\t" + l + ("\t:white_check_mark:" if p == "false" else "\t") + "\n"
                 return await ctx.send(output)
         else:
             return await ctx.send("Please provide a username to search (without the BattleTag ID)")
