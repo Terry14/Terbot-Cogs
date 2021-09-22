@@ -32,10 +32,13 @@ class OWStats(commands.Cog):
                 names = re.findall(">(" + uname + "#[0-9]+)<", driver.page_source, flags=re.IGNORECASE)
                 levels = re.findall("level-value\">([0-9]+)<", driver.page_source, flags=re.IGNORECASE)
                 private = re.findall("lity-private=\"([falsetru]+)\"", driver.page_source)
-                output = "'''BattleTag\t\t\tLevel\tPublic\n"
+                # Pad names, levels to be same length
+                names = [x + (' ' * (20 - len(x))) for x in names]
+                levels = [x + (' ' * (5 - len(x))) for x in levels]
+                output = "```BattleTag               Level    Public?"
                 for n, l, p in zip(names, levels, private):
-                    output += n + "\t\t" + l + ("\t:white_check_mark:" if p == "false" else "\t") + "\n"
-                output += "'''"
+                    output += n + "\t" + l + ("\tpublic" if p == "false" else "\tprivate") + "\n"
+                output += "```"
                 return await ctx.send(output)
         else:
             return await ctx.send("Please provide a username to search (without the BattleTag ID)")
