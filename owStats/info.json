@@ -1,0 +1,8 @@
+{
+    "author" : ["Terry14", "Terbi#7020 (365519028720238593)"],
+    "short" : "Search Overwatch stats.",
+    "description" : "Allows users to search for overwatch player stats.",
+    "requirements" : ["re", "selenium"],
+    "tags" : ["overwatch"],
+    "install_msg": "**Thanks for installing! You may need to add GeckoDriver to your PATH**"
+}
