@@ -1,0 +1,8 @@
+{
+    "author" : ["Terry14", "Terbi#7020 (365519028720238593)"],
+    "short" : "Allows users to upload an image and remove the background.",
+    "description" : "Allows users to upload an image and remove the background using removebg api",
+    "requirements" : ["requests"],
+    "tags" : ["image"],
+    "install_msg": "**Thanks for installing!**"
+}
