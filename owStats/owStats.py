@@ -55,7 +55,7 @@ class OWStats(commands.Cog):
             response = requests.get("https://ow-api.com/v1/stats/pc/us/" + btagDash + "/profile")
             if response.status_code == requests.codes.ok:
                 if response.json()["private"] == True:
-                    return await ctx.send(btag + "'s profile is private :'(.")
+                    return await ctx.send(btag + "'s profile is private :'(")
                 if response.json()["ratings"] is None:
                     return await ctx.send(btag + " has not placed any competitive roles this season.")
                 else:
