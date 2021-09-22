@@ -56,6 +56,7 @@ class RemoveBG(commands.Cog):
 
                 with io.BytesIO() as out:
                     out.write(response.content)
+                    out.seek(0)
                     f = discord.File(out, filename='no-bg.png')    
                 await ctx.send(file=f)
             else:
@@ -79,6 +80,7 @@ class RemoveBG(commands.Cog):
             if response.status_code == requests.codes.ok:
                 with io.BytesIO() as out:
                     out.write(response.content)
+                    out.seek(0)
                     f = discord.File(out, filename='no-bg.png')    
                 await ctx.send(file=f)
             else:
