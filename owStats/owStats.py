@@ -35,7 +35,7 @@ class OWStats(commands.Cog):
                 # Pad names, levels to be same length
                 names = [x + (' ' * (20 - len(x))) for x in names]
                 levels = [x + (' ' * (5 - len(x))) for x in levels]
-                output = "```BattleTag               Level    Public?"
+                output = "```BattleTag               Level    Public?\n"
                 for n, l, p in zip(names, levels, private):
                     output += n + "\t" + l + ("\tpublic" if p == "false" else "\tprivate") + "\n"
                 output += "```"
